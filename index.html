@@ -35,19 +35,6 @@
             background: radial-gradient(circle at 50% 50%, #1a1a3a 0%, #020205 100%);
         }
 
-        .milky-way {
-            position: fixed;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            z-index: -1;
-            background: radial-gradient(ellipse at center, rgba(188, 19, 254, 0.1) 0%, transparent 70%);
-            animation: rotateGalaxy 30s infinite linear;
-        }
-
-        @keyframes rotateGalaxy {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         .container {
             width: 100%;
             max-width: 480px;
@@ -78,32 +65,40 @@
 <body>
 
 <div class="galaxy-bg"></div>
-<div class="milky-way"></div>
 
 <div class="container">
     <header>
         <h1 class="brand">NGUYEN MINH</h1>
-        <div style="font-size: 0.7rem; color: #aaa; letter-spacing: 2px;">DỊCH VỤ IPHONE & ANDROID CHUYÊN NGHIỆP</div>
+        <div style="font-size: 0.7rem; color: #aaa; letter-spacing: 2px;">DỊCH VỤ PREMIUM • UY TÍN • CHẤT LƯỢNG</div>
     </header>
+
+    <div class="section" style="border: 2px solid var(--neon-blue);">
+        <h2 style="color: var(--neon-blue);">🔥 PROXY VIP 1</h2>
+        <div style="font-size: 0.8rem; color: var(--gold); margin-bottom: 10px; font-weight: bold;">DATA PROXY - ANTENNA + DRAG</div>
+        <div class="price-row"><span>GÓI TUẦN</span><span class="price-val">150.000đ</span></div>
+        <div class="price-row"><span>GÓI THÁNG</span><span class="price-val">300.000đ</span></div>
+        <ul class="details">
+            <li>Kháng Band 100% - Cày Rank thả ga</li>
+            <li>Ổn định - Không giật lag</li>
+            <li>Hỗ trợ cài đặt từ A đến Z</li>
+        </ul>
+    </div>
+
+    <div class="section" style="border: 2px solid var(--neon-purple);">
+        <h2 style="color: var(--neon-purple); border-color: var(--neon-purple);">💎 PROXY VIP 2</h2>
+        <div style="font-size: 0.8rem; color: var(--neon-pink); margin-bottom: 10px; font-weight: bold;">DATA NO ANTENNA (AIM 80) - BẢN VIP</div>
+        <div class="price-row"><span>GÓI TUẦN</span><span class="price-val">170.000đ</span></div>
+        <div class="price-row"><span>GÓI THÁNG</span><span class="price-val">320.000đ</span></div>
+        <ul class="details">
+            <li>Kéo tâm VIP PRO - Độ nhạy chuẩn 80%</li>
+            <li>Không gây khóa ACC - Bản VIP cực mượt</li>
+        </ul>
+    </div>
 
     <div class="section" style="border: 2px solid var(--neon-green);">
         <h2 style="color: var(--neon-green); border-color: var(--neon-green);">🎯 FILE HỖ TRỢ KÉO TÂM</h2>
         <div class="price-row"><span>iOS (Cấu Hình)</span><span class="price-val">50.000đ - 1.000.000đ</span></div>
         <div class="price-row"><span>Data Android</span><span class="price-val">100.000đ - 400.000đ</span></div>
-        <ul class="details">
-            <li>An toàn 100% - Dùng vĩnh viễn - Không can thiệp Game</li>
-        </ul>
-    </div>
-
-    <div class="section" style="border: 2px solid var(--neon-blue);">
-        <h2 style="color: var(--neon-blue);">🚀 PROXY & DATA FREE FIRE</h2>
-        <div class="price-row"><span>GÓI TUẦN</span><span class="price-val">150.000đ</span></div>
-        <div class="price-row"><span>GÓI THÁNG</span><span class="price-val">300.000đ</span></div>
-        <ul class="details">
-            <li><b>Proxy No Antenna (Aim 80)</b> - Siêu mượt</li>
-            <li>Kháng Band 100% - Cày Rank thả ga</li>
-            <li>Ổn định - Không giật lag - Hỗ trợ cài A-Z</li>
-        </ul>
     </div>
 
     <div class="section">
@@ -111,33 +106,16 @@
         <div class="price-row"><span>1 NGÀY</span><span class="price-val">140.000đ</span></div>
         <div class="price-row"><span>1 TUẦN</span><span class="price-val">350.000đ</span></div>
         <div class="price-row"><span>1 THÁNG</span><span class="price-val">550.000đ</span></div>
-        <ul class="details">
-            <li>Định vị ESP, AimBot ghim đầu, Silent</li>
-            <li>Buff 120 FPS, Ẩn màn hình cân kèo tiền</li>
-        </ul>
     </div>
 
     <div class="section">
         <h2 style="color: var(--neon-pink); border-color: var(--neon-pink);">🛠️ CHỨNG CHỈ ESIGN (iOS 12+)</h2>
         <div class="price-row"><span>GÓI THƯỜNG</span><span class="price-val">150.000đ</span></div>
         <div class="price-row"><span>GÓI VIP (BH 1 Tháng)</span><span class="price-val">200.000đ</span></div>
-        <ul class="details">
-            <li><b>Tác dụng:</b> Cài file .IPA (App Mod, Menu Hack)</li>
-            <li>Ký App trực tiếp trên iPhone không cần máy tính</li>
-            <li>Dùng ổn định 1 năm - Không lo thu hồi</li>
-        </ul>
-    </div>
-
-    <div class="section">
-        <h2 style="color: var(--gold); border-color: var(--gold);">📱 TÀI KHOẢN APP PRO</h2>
-        <div class="price-row"><span>LOCKET GOLD</span><span class="price-val">50k - 200k</span></div>
-        <div class="price-row"><span>CANVA PRO</span><span class="price-val">50k - 600k</span></div>
-        <div class="price-row"><span>CAPCUT PRO</span><span class="price-val">80k - 410k</span></div>
     </div>
 
     <div class="footer">
-        <div style="display:flex; justify-content:space-between"><span>ZALO:</span> <b>0349045703</b></div>
-        <div style="display:flex; justify-content:space-between; margin-top:5px;"><span>MB BANK:</span> <b>0349045703</b></div>
+        <div style="display:flex; justify-content:space-between"><span>ZALO/MB BANK:</span> <b>0349045703</b></div>
         <div style="text-align:center; color:var(--gold); margin-top:10px; font-weight:bold">CHỦ TK: NGUYEN MINH</div>
     </div>
 </div>
