@@ -27,8 +27,10 @@
             justify-content: center;
             overflow-x: hidden;
             position: relative;
+            min-height: 100vh;
         }
 
+        /* ----- HIỆU ỨNG NỀN GALAXY & LỬA RƠI ----- */
         .galaxy-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -36,6 +38,57 @@
             background: radial-gradient(circle at 50% 50%, #1a1a3a 0%, #020205 100%);
         }
 
+        /* Container cho lửa rơi */
+        .fire-rain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; /* Nằm dưới container nhưng trên nền galaxy */
+            pointer-events: none; /* Không cản trở việc click vào nội dung */
+        }
+
+        /* Style cho từng ngọn lửa rơi */
+        .falling-fire {
+            position: absolute;
+            color: var(--fire);
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: fireFall 5s linear infinite;
+        }
+
+        /* Animation rơi */
+        @keyframes fireFall {
+            0% {
+                top: -50px; /* Bắt đầu từ phía trên màn hình */
+                opacity: 0;
+                transform: translateX(0) scale(0.5);
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                top: 110vh; /* Rơi xuống qua đáy màn hình */
+                opacity: 0;
+                transform: translateX(20px) scale(1); /* Thêm chút chuyển động ngang và to ra */
+            }
+        }
+
+        /* Tạo ngẫu nhiên vị trí và độ trễ cho các ngọn lửa */
+        .falling-fire:nth-child(1)  { left: 5%;  animation-delay: 0s;   font-size: 1.0rem; }
+        .falling-fire:nth-child(2)  { left: 15%; animation-delay: 2.1s; font-size: 1.4rem; animation-duration: 6s; }
+        .falling-fire:nth-child(3)  { left: 25%; animation-delay: 0.5s; font-size: 1.2rem; }
+        .falling-fire:nth-child(4)  { left: 35%; animation-delay: 3.3s; font-size: 1.6rem; animation-duration: 4.5s; }
+        .falling-fire:nth-child(5)  { left: 45%; animation-delay: 1.0s; font-size: 1.1rem; }
+        .falling-fire:nth-child(6)  { left: 55%; animation-delay: 4.5s; font-size: 1.5rem; animation-duration: 5.5s; }
+        .falling-fire:nth-child(7)  { left: 65%; animation-delay: 0.8s; font-size: 1.3rem; }
+        .falling-fire:nth-child(8)  { left: 75%; animation-delay: 2.7s; font-size: 1.7rem; animation-duration: 5s; }
+        .falling-fire:nth-child(9)  { left: 85%; animation-delay: 1.5s; font-size: 1.2rem; }
+        .falling-fire:nth-child(10) { left: 95%; animation-delay: 3.9s; font-size: 1.4rem; animation-duration: 6.2s; }
+        .falling-fire:nth-child(11) { left: 10%; animation-delay: 5.2s; font-size: 1.3rem; }
+        .falling-fire:nth-child(12) { left: 30%; animation-delay: 6.0s; font-size: 1.5rem; animation-duration: 5.8s; }
+        .falling-fire:nth-child(13) { left: 50%; animation-delay: 7.1s; font-size: 1.2rem; }
+        .falling-fire:nth-child(14) { left: 70%; animation-delay: 8.3s; font-size: 1.6rem; animation-duration: 4.7s; }
+        .falling-fire:nth-child(15) { left: 90%; animation-delay: 9.0s; font-size: 1.4rem; }
+
+        /* ----- CONTAINER CHÍNH ----- */
         .container {
             width: 100%;
             max-width: 480px;
@@ -45,25 +98,24 @@
             padding: 20px;
             box-shadow: 0 0 30px rgba(188, 19, 254, 0.3);
             backdrop-filter: blur(10px);
+            position: relative; /* Đảm bảo nội dung nằm trên hiệu ứng rơi */
+            z-index: 10;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         header { text-align: center; margin-bottom: 25px; border-bottom: 2px solid var(--neon-purple); padding-bottom: 10px; }
         .brand { font-family: 'Oswald', sans-serif; font-size: 2.5rem; text-transform: uppercase; background: linear-gradient(to right, #fff, var(--neon-blue), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; }
 
-        .section { margin-bottom: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 15px; border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.3s; }
-        .section:hover { transform: scale(1.02); box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); }
-        
+        .section { margin-bottom: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 15px; border: 1px solid rgba(255, 255, 255, 0.1); }
         h2 { font-size: 1.1rem; color: var(--neon-blue); text-transform: uppercase; margin-top: 0; border-left: 4px solid var(--neon-blue); padding-left: 10px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
 
         .price-row { display: flex; justify-content: space-between; background: rgba(255, 255, 255, 0.08); padding: 10px 15px; border-radius: 10px; margin-bottom: 8px; font-weight: bold; align-items: center; }
-        .price-val { color: var(--gold); text-shadow: 0 0 5px rgba(255, 218, 68, 0.5); }
+        .price-val { color: var(--gold); }
 
         .details { list-style: none; padding: 0; margin: 10px 0; font-size: 0.85rem; color: #eee; }
         .details li { margin-bottom: 5px; display: flex; align-items: flex-start; gap: 8px; }
         .details li::before { content: "⚡"; color: var(--neon-green); }
-
-        .fire-icon { animation: burn 0.5s infinite alternate; color: var(--fire); }
-        @keyframes burn { from { opacity: 0.7; transform: scale(1); } to { opacity: 1; transform: scale(1.2); } }
 
         .footer { background: rgba(20, 20, 45, 0.9); padding: 15px; border-radius: 15px; border: 1px solid var(--neon-purple); margin-top: 20px; font-size: 0.9rem; text-align: center; }
     </style>
@@ -72,24 +124,31 @@
 
 <div class="galaxy-bg"></div>
 
+<div class="fire-rain">
+    <span class="falling-fire">🔥</span><span class="falling-fire">🔥</span><span class="falling-fire">🔥</span>
+    <span class="falling-fire">🔥</span><span class="falling-fire">🔥</span><span class="falling-fire">🔥</span>
+    <span class="falling-fire">🔥</span><span class="falling-fire">🔥</span><span class="falling-fire">🔥</span>
+    <span class="falling-fire">🔥</span><span class="falling-fire">🔥</span><span class="falling-fire">🔥</span>
+    <span class="falling-fire">🔥</span><span class="falling-fire">🔥</span><span class="falling-fire">🔥</span>
+</div>
+
 <div class="container">
     <header>
         <h1 class="brand">NGUYEN MINH</h1>
-        <div style="font-size: 0.7rem; color: #aaa; letter-spacing: 2px;">PREMIUM SERVICES • <span class="fire-icon">🔥</span></div>
+        <div style="font-size: 0.7rem; color: #aaa; letter-spacing: 2px;">DỊCH VỤ PREMIUM • UY TÍN • CHẤT LƯỢNG</div>
     </header>
 
     <div class="section" style="border: 2px solid var(--neon-green);">
-        <h2 style="color: var(--neon-green); border-color: var(--neon-green);">🎯 FILE HỖ TRỢ KÉO TÂM <span class="fire-icon">🔥</span></h2>
+        <h2 style="color: var(--neon-green); border-color: var(--neon-green);">🎯 FILE HỖ TRỢ KÉO TÂM</h2>
         <div class="price-row"><span>iOS (Cấu Hình)</span><span class="price-val">50.000đ - 1.000.000đ</span></div>
         <div class="price-row"><span>Data Android</span><span class="price-val">200.000đ / Chức năng</span></div>
         <ul class="details">
-            <li>An toàn tuyệt đối - Dùng vĩnh viễn</li>
-            <li>Ghim tâm mượt mà, không giật lag</li>
+            <li>An toàn 100% - Dùng vĩnh viễn</li>
         </ul>
     </div>
 
     <div class="section" style="border: 1px solid var(--neon-blue);">
-        <h2 style="color: var(--neon-blue); border-color: var(--neon-blue);">⚙️ MENU FLUORITE (SAFE 99%) <span class="fire-icon">🔥</span></h2>
+        <h2 style="color: var(--neon-blue); border-color: var(--neon-blue);">⚙️ MENU FLUORITE (SAFE 99%)</h2>
         <div class="price-row"><span>1 NGÀY</span><span class="price-val">140.000đ</span></div>
         <div class="price-row"><span>1 TUẦN</span><span class="price-val">350.000đ</span></div>
         <div class="price-row"><span>1 THÁNG</span><span class="price-val">550.000đ</span></div>
@@ -101,53 +160,54 @@
 
     <div class="section" style="border: 1px solid var(--neon-pink);">
         <h2 style="color: var(--neon-pink); border-color: var(--neon-pink);">🛠️ CHỨNG CHỈ ESIGN (iOS 12+)</h2>
-        <div class="price-row"><span>GÓI 150K</span><span class="price-val">Bảo hành [10-26+]</span></div>
-        <div class="price-row" style="border: 1px solid var(--neon-green);"><span>GÓI 200K</span><span class="price-val">VIP - Không thu hồi</span></div>
+        <div style="margin-bottom: 15px;">
+            <div class="price-row"><span>GÓI 150K</span><span class="price-val">Bảo hành [10-26+]</span></div>
+        </div>
+        <div style="margin-bottom: 15px;">
+            <div class="price-row" style="border: 1px solid var(--neon-green);"><span>GÓI 200K</span><span class="price-val">VIP - Không thu hồi</span></div>
+        </div>
         <ul class="details">
+            <li>Cài file .IPA (App Mod, Menu Hack)</li>
             <li>Tỉ lệ tránh thu hồi 99% - Hỗ trợ Bypass</li>
-            <li>Loại bỏ lỗi kết nối, ẩn iCloud an toàn</li>
         </ul>
     </div>
 
     <div class="section" style="border: 1px solid var(--neon-blue);">
-        <h2 style="color: var(--neon-blue);">🚀 PROXY VIP 1 (ANTENNA + DRAG)</h2>
+        <h2 style="color: var(--neon-blue);">🔥 PROXY VIP 1 (ANTENNA + DRAG)</h2>
         <div class="price-row"><span>GÓI TUẦN</span><span class="price-val">150.000đ</span></div>
         <div class="price-row"><span>GÓI THÁNG</span><span class="price-val">300.000đ</span></div>
         <ul class="details">
-            <li>Kháng Band 100% - Cày Rank siêu mượt</li>
-            <li>Hỗ trợ cài đặt A-Z nhiệt tình</li>
+            <li>Kháng Band 100% - Cày Rank thả ga</li>
+            <li>Ổn định, mượt mà - Hỗ trợ cài A-Z</li>
         </ul>
     </div>
 
-    <div class="section" style="border: 1px solid var(--neon-purple);">
-        <h2 style="color: var(--neon-purple); border-color: var(--neon-purple);">💎 PROXY VIP 2 (NO ANTENNA) <span class="fire-icon">🔥</span></h2>
+    <div class="section" style="border: 2px solid var(--neon-purple);">
+        <h2 style="color: var(--neon-purple); border-color: var(--neon-purple);">💎 PROXY VIP 2 (NO ANTENNA)</h2>
         <div class="price-row"><span>GÓI TUẦN</span><span class="price-val">170.000đ</span></div>
         <div class="price-row"><span>GÓI THÁNG</span><span class="price-val">320.000đ</span></div>
         <ul class="details">
-            <li>Kéo tâm VIP PRO (Aim 80) - Không khóa ACC</li>
-            <li>Bản VIP cực mượt, ổn định cao</li>
+            <li>Kéo tâm VIP PRO (Aim 80) - Bản VIP</li>
+            <li>Độ nhạy chuẩn - Không khóa ACC</li>
         </ul>
     </div>
 
     <div class="section" style="border: 1px solid var(--gold);">
-        <h2 style="color: var(--gold); border-color: var(--gold);">📱 TÀI KHOẢN APP PRO <span class="fire-icon">🔥</span></h2>
+        <h2 style="color: var(--gold); border-color: var(--gold);">📱 TÀI KHOẢN APP PRO</h2>
         
         <div style="margin-bottom: 15px;">
             <div style="color: var(--neon-green); font-weight: bold; margin-bottom: 5px; font-size: 0.9rem;">LOCKET GOLD 💛 (Full tính năng)</div>
-            <div class="price-row"><span>1 THÁNG</span><span class="price-val">50.000đ</span></div>
-            <div class="price-row"><span>1 NĂM</span><span class="price-val">200.000đ</span></div>
+            <div class="price-row"><span>1 THÁNG / 1 NĂM</span><span class="price-val">50k / 200k</span></div>
         </div>
 
         <div style="margin-bottom: 15px;">
             <div style="color: var(--neon-blue); font-weight: bold; margin-bottom: 5px; font-size: 0.9rem;">CANVA PRO 🎨 (Thiết kế VIP)</div>
-            <div class="price-row"><span>1 THÁNG</span><span class="price-val">50.000đ</span></div>
-            <div class="price-row"><span>VĨNH VIỄN</span><span class="price-val">600.000đ</span></div>
+            <div class="price-row"><span>1 THÁNG / VĨNH VIỄN</span><span class="price-val">50k / 600k</span></div>
         </div>
 
         <div>
             <div style="color: var(--neon-pink); font-weight: bold; margin-bottom: 5px; font-size: 0.9rem;">CAPCUT PRO 🎬 (Edit Video Pro)</div>
-            <div class="price-row"><span>1 THÁNG</span><span class="price-val">80.000đ</span></div>
-            <div class="price-row"><span>1 NĂM</span><span class="price-val">410.000đ</span></div>
+            <div class="price-row"><span>1 THÁNG / 1 NĂM</span><span class="price-val">80k / 410k</span></div>
         </div>
     </div>
 
