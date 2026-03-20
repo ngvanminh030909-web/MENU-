@@ -15,6 +15,7 @@
             --gold: #ffda44;
             --text-color: #fff;
             --fire: #ff4500;
+            --snow: #e0f7fa;
         }
 
         body {
@@ -30,7 +31,7 @@
             min-height: 100vh;
         }
 
-        /* ----- HIỆU ỨNG NỀN GALAXY & LỬA RƠI ----- */
+        /* ----- HIỆU ỨNG NỀN GALAXY ----- */
         .galaxy-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -38,55 +39,69 @@
             background: radial-gradient(circle at 50% 50%, #1a1a3a 0%, #020205 100%);
         }
 
-        /* Container cho lửa rơi */
-        .fire-rain {
+        /* ----- HIỆU ỨNG RƠI DÀY ĐẶC (BĂNG & LỬA) ----- */
+        .falling-elements {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; /* Nằm dưới container nhưng trên nền galaxy */
+            z-index: 9999; /* Đẩy lên trên cùng để rơi đè lên menu */
             pointer-events: none; /* Không cản trở việc click vào nội dung */
         }
 
-        /* Style cho từng ngọn lửa rơi */
-        .falling-fire {
+        /* Style chung cho các phần tử rơi */
+        .element-item {
             position: absolute;
-            color: var(--fire);
-            font-size: 1.2rem;
             opacity: 0;
-            animation: fireFall 5s linear infinite;
+            animation: fallAnimation 5s linear infinite;
         }
 
         /* Animation rơi */
-        @keyframes fireFall {
-            0% {
-                top: -50px; /* Bắt đầu từ phía trên màn hình */
-                opacity: 0;
-                transform: translateX(0) scale(0.5);
-            }
+        @keyframes fallAnimation {
+            0% { top: -50px; opacity: 0; transform: translateX(0) scale(0.5); }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% {
-                top: 110vh; /* Rơi xuống qua đáy màn hình */
-                opacity: 0;
-                transform: translateX(20px) scale(1); /* Thêm chút chuyển động ngang và to ra */
-            }
+            100% { top: 110vh; opacity: 0; transform: translateX(20px) scale(1); }
         }
 
-        /* Tạo ngẫu nhiên vị trí và độ trễ cho các ngọn lửa */
-        .falling-fire:nth-child(1)  { left: 5%;  animation-delay: 0s;   font-size: 1.0rem; }
-        .falling-fire:nth-child(2)  { left: 15%; animation-delay: 2.1s; font-size: 1.4rem; animation-duration: 6s; }
-        .falling-fire:nth-child(3)  { left: 25%; animation-delay: 0.5s; font-size: 1.2rem; }
-        .falling-fire:nth-child(4)  { left: 35%; animation-delay: 3.3s; font-size: 1.6rem; animation-duration: 4.5s; }
-        .falling-fire:nth-child(5)  { left: 45%; animation-delay: 1.0s; font-size: 1.1rem; }
-        .falling-fire:nth-child(6)  { left: 55%; animation-delay: 4.5s; font-size: 1.5rem; animation-duration: 5.5s; }
-        .falling-fire:nth-child(7)  { left: 65%; animation-delay: 0.8s; font-size: 1.3rem; }
-        .falling-fire:nth-child(8)  { left: 75%; animation-delay: 2.7s; font-size: 1.7rem; animation-duration: 5s; }
-        .falling-fire:nth-child(9)  { left: 85%; animation-delay: 1.5s; font-size: 1.2rem; }
-        .falling-fire:nth-child(10) { left: 95%; animation-delay: 3.9s; font-size: 1.4rem; animation-duration: 6.2s; }
-        .falling-fire:nth-child(11) { left: 10%; animation-delay: 5.2s; font-size: 1.3rem; }
-        .falling-fire:nth-child(12) { left: 30%; animation-delay: 6.0s; font-size: 1.5rem; animation-duration: 5.8s; }
-        .falling-fire:nth-child(13) { left: 50%; animation-delay: 7.1s; font-size: 1.2rem; }
-        .falling-fire:nth-child(14) { left: 70%; animation-delay: 8.3s; font-size: 1.6rem; animation-duration: 4.7s; }
-        .falling-fire:nth-child(15) { left: 90%; animation-delay: 9.0s; font-size: 1.4rem; }
+        /* Kiểu dáng cho lửa */
+        .fire-item { color: var(--fire); }
+
+        /* Kiểu dáng cho tuyết */
+        .snow-item { color: var(--snow); text-shadow: 0 0 5px var(--neon-blue); }
+
+        /* Tạo ngẫu nhiên vị trí, độ mờ, kích thước và tốc độ (Nhiều hơn!) */
+        /* --- LỬA --- */
+        .element-item:nth-child(1)  { left: 5%;  animation-delay: 0s;   font-size: 1.0rem; }
+        .element-item:nth-child(2)  { left: 15%; animation-delay: 2.1s; font-size: 1.4rem; animation-duration: 6s; opacity: 0.8; }
+        .element-item:nth-child(3)  { left: 25%; animation-delay: 0.5s; font-size: 1.2rem; }
+        .element-item:nth-child(4)  { left: 35%; animation-delay: 3.3s; font-size: 1.6rem; animation-duration: 4.5s; opacity: 0.9; }
+        .element-item:nth-child(5)  { left: 45%; animation-delay: 1.0s; font-size: 1.1rem; }
+        .element-item:nth-child(6)  { left: 55%; animation-delay: 4.5s; font-size: 1.5rem; animation-duration: 5.5s; }
+        .element-item:nth-child(7)  { left: 65%; animation-delay: 0.8s; font-size: 1.3rem; opacity: 0.7; }
+        .element-item:nth-child(8)  { left: 75%; animation-delay: 2.7s; font-size: 1.7rem; animation-duration: 5s; }
+        .element-item:nth-child(9)  { left: 85%; animation-delay: 1.5s; font-size: 1.2rem; }
+        .element-item:nth-child(10) { left: 95%; animation-delay: 3.9s; font-size: 1.4rem; animation-duration: 6.2s; opacity: 0.8; }
+        .element-item:nth-child(11) { left: 10%; animation-delay: 5.2s; font-size: 1.3rem; animation-duration: 4.8s; }
+        .element-item:nth-child(12) { left: 30%; animation-delay: 6.0s; font-size: 1.5rem; animation-duration: 5.8s; }
+        .element-item:nth-child(13) { left: 50%; animation-delay: 7.1s; font-size: 1.2rem; animation-duration: 4.2s; opacity: 0.9; }
+        .element-item:nth-child(14) { left: 70%; animation-delay: 8.3s; font-size: 1.6rem; animation-duration: 4.7s; }
+        .element-item:nth-child(15) { left: 90%; animation-delay: 9.0s; font-size: 1.4rem; animation-duration: 5.1s; }
+
+        /* --- TUYẾT (Đan xen) --- */
+        .element-item:nth-child(16) { left: 8%;  animation-delay: 1.2s; font-size: 1.1rem; }
+        .element-item:nth-child(17) { left: 18%; animation-delay: 3.5s; font-size: 1.5rem; animation-duration: 6.3s; }
+        .element-item:nth-child(18) { left: 28%; animation-delay: 0.2s; font-size: 1.3rem; }
+        .element-item:nth-child(19) { left: 38%; animation-delay: 4.0s; font-size: 1.7rem; animation-duration: 4.9s; opacity: 0.8; }
+        .element-item:nth-child(20) { left: 48%; animation-delay: 2.2s; font-size: 1.2rem; }
+        .element-item:nth-child(21) { left: 58%; animation-delay: 5.8s; font-size: 1.6rem; animation-duration: 5.2s; }
+        .element-item:nth-child(22) { left: 68%; animation-delay: 1.8s; font-size: 1.4rem; opacity: 0.9; }
+        .element-item:nth-child(23) { left: 78%; animation-delay: 3.1s; font-size: 1.8rem; animation-duration: 5.7s; }
+        .element-item:nth-child(24) { left: 88%; animation-delay: 0.9s; font-size: 1.3rem; }
+        .element-item:nth-child(25) { left: 98%; animation-delay: 4.9s; font-size: 1.5rem; animation-duration: 6.1s; opacity: 0.8; }
+        .element-item:nth-child(26) { left: 12%; animation-delay: 6.5s; font-size: 1.2rem; animation-duration: 5s; }
+        .element-item:nth-child(27) { left: 32%; animation-delay: 7.8s; font-size: 1.6rem; animation-duration: 4.3s; opacity: 0.7; }
+        .element-item:nth-child(28) { left: 52%; animation-delay: 8.9s; font-size: 1.4rem; animation-duration: 5.9s; }
+        .element-item:nth-child(29) { left: 72%; animation-delay: 9.5s; font-size: 1.7rem; animation-duration: 5.3s; }
+        .element-item:nth-child(30) { left: 92%; animation-delay: 10s;  font-size: 1.3rem; animation-duration: 6.5s; }
 
         /* ----- CONTAINER CHÍNH ----- */
         .container {
@@ -98,10 +113,9 @@
             padding: 20px;
             box-shadow: 0 0 30px rgba(188, 19, 254, 0.3);
             backdrop-filter: blur(10px);
-            position: relative; /* Đảm bảo nội dung nằm trên hiệu ứng rơi */
-            z-index: 10;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            position: relative;
+            z-index: 10; /* Đảm bảo nội dung có thể click được dưới lớp falling-elements */
+            margin: 20px 0;
         }
 
         header { text-align: center; margin-bottom: 25px; border-bottom: 2px solid var(--neon-purple); padding-bottom: 10px; }
@@ -110,7 +124,7 @@
         .section { margin-bottom: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 15px; border: 1px solid rgba(255, 255, 255, 0.1); }
         h2 { font-size: 1.1rem; color: var(--neon-blue); text-transform: uppercase; margin-top: 0; border-left: 4px solid var(--neon-blue); padding-left: 10px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
 
-        .price-row { display: flex; justify-content: space-between; background: rgba(255, 255, 255, 0.08); padding: 10px 15px; border-radius: 10px; margin-bottom: 8px; font-weight: bold; align-items: center; }
+        .price-row { display: flex; justify-content: space-between; background: rgba(255, 255, 255, 0.08); padding: 10px 15px; border-radius: 10px; margin-bottom: 8px; font-weight: bold; font-size: 0.9rem; }
         .price-val { color: var(--gold); }
 
         .details { list-style: none; padding: 0; margin: 10px 0; font-size: 0.85rem; color: #eee; }
@@ -124,12 +138,24 @@
 
 <div class="galaxy-bg"></div>
 
-<div class="fire-rain">
-    <span class="falling-fire">🔥</span><span class="falling-fire">🔥</span><span class="falling-fire">🔥</span>
-    <span class="falling-fire">🔥</span><span class="falling-fire">🔥</span><span class="falling-fire">🔥</span>
-    <span class="falling-fire">🔥</span><span class="falling-fire">🔥</span><span class="falling-fire">🔥</span>
-    <span class="falling-fire">🔥</span><span class="falling-fire">🔥</span><span class="falling-fire">🔥</span>
-    <span class="falling-fire">🔥</span><span class="falling-fire">🔥</span><span class="falling-fire">🔥</span>
+<div class="falling-elements">
+    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
+    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
+    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
+    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
+    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
+    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
+    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
+    <span class="element-item fire-item">🔥</span>
+
+    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
+    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
+    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
+    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
+    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
+    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
+    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
+    <span class="element-item snow-item">❄️</span>
 </div>
 
 <div class="container">
@@ -152,43 +178,23 @@
         <div class="price-row"><span>1 NGÀY</span><span class="price-val">140.000đ</span></div>
         <div class="price-row"><span>1 TUẦN</span><span class="price-val">350.000đ</span></div>
         <div class="price-row"><span>1 THÁNG</span><span class="price-val">550.000đ</span></div>
-        <ul class="details">
-            <li>ESP, AimBot ghim đầu, Aim Silent</li>
-            <li>Buff 120 FPS, Đạn thẳng, Ẩn màn hình</li>
-        </ul>
     </div>
 
     <div class="section" style="border: 1px solid var(--neon-pink);">
-        <h2 style="color: var(--neon-pink); border-color: var(--neon-pink);">🛠️ CHỨNG CHỈ ESIGN (iOS 12+)</h2>
-        <div style="margin-bottom: 15px;">
-            <div class="price-row"><span>GÓI 150K</span><span class="price-val">Bảo hành [10-26+]</span></div>
-        </div>
-        <div style="margin-bottom: 15px;">
-            <div class="price-row" style="border: 1px solid var(--neon-green);"><span>GÓI 200K</span><span class="price-val">VIP - Không thu hồi</span></div>
-        </div>
+        <h2 style="color: var(--neon-pink); border-color: var(--neon-pink);">🛠️ CHỨNG CHỈ ESIGN</h2>
+        <div class="price-row"><span>GÓI 150K</span><span class="price-val">Bảo hành [10-26+]</span></div>
+        <div class="price-row" style="border: 1px solid var(--neon-green);"><span>GÓI 200K</span><span class="price-val">VIP - Không thu hồi</span></div>
         <ul class="details">
-            <li>Cài file .IPA (App Mod, Menu Hack)</li>
             <li>Tỉ lệ tránh thu hồi 99% - Hỗ trợ Bypass</li>
         </ul>
     </div>
 
     <div class="section" style="border: 1px solid var(--neon-blue);">
-        <h2 style="color: var(--neon-blue);">🔥 PROXY VIP 1 (ANTENNA + DRAG)</h2>
+        <h2 style="color: var(--neon-blue);">🚀 PROXY VIP (ANTENNA + DRAG)</h2>
         <div class="price-row"><span>GÓI TUẦN</span><span class="price-val">150.000đ</span></div>
         <div class="price-row"><span>GÓI THÁNG</span><span class="price-val">300.000đ</span></div>
         <ul class="details">
             <li>Kháng Band 100% - Cày Rank thả ga</li>
-            <li>Ổn định, mượt mà - Hỗ trợ cài A-Z</li>
-        </ul>
-    </div>
-
-    <div class="section" style="border: 2px solid var(--neon-purple);">
-        <h2 style="color: var(--neon-purple); border-color: var(--neon-purple);">💎 PROXY VIP 2 (NO ANTENNA)</h2>
-        <div class="price-row"><span>GÓI TUẦN</span><span class="price-val">170.000đ</span></div>
-        <div class="price-row"><span>GÓI THÁNG</span><span class="price-val">320.000đ</span></div>
-        <ul class="details">
-            <li>Kéo tâm VIP PRO (Aim 80) - Bản VIP</li>
-            <li>Độ nhạy chuẩn - Không khóa ACC</li>
         </ul>
     </div>
 
@@ -196,24 +202,30 @@
         <h2 style="color: var(--gold); border-color: var(--gold);">📱 TÀI KHOẢN APP PRO</h2>
         
         <div style="margin-bottom: 15px;">
-            <div style="color: var(--neon-green); font-weight: bold; margin-bottom: 5px; font-size: 0.9rem;">LOCKET GOLD 💛 (Full tính năng)</div>
-            <div class="price-row"><span>1 THÁNG / 1 NĂM</span><span class="price-val">50k / 200k</span></div>
+            <div style="color: var(--neon-green); font-weight: bold; margin-bottom: 5px; font-size: 0.85rem;">LOCKET GOLD 💛</div>
+            <div class="price-row"><span>1 THÁNG</span><span class="price-val">40.000đ</span></div>
+            <div class="price-row"><span>6 THÁNG</span><span class="price-val">120.000đ</span></div>
+            <div class="price-row"><span>1 NĂM</span><span class="price-val">240.000đ</span></div>
         </div>
 
         <div style="margin-bottom: 15px;">
-            <div style="color: var(--neon-blue); font-weight: bold; margin-bottom: 5px; font-size: 0.9rem;">CANVA PRO 🎨 (Thiết kế VIP)</div>
-            <div class="price-row"><span>1 THÁNG / VĨNH VIỄN</span><span class="price-val">50k / 600k</span></div>
+            <div style="color: var(--neon-blue); font-weight: bold; margin-bottom: 5px; font-size: 0.85rem;">CANVA PRO 🎨</div>
+            <div class="price-row"><span>1 THÁNG</span><span class="price-val">40.000đ</span></div>
+            <div class="price-row"><span>1 NĂM</span><span class="price-val">200.000đ</span></div>
+            <div class="price-row"><span>VĨNH VIỄN</span><span class="price-val">600.000đ</span></div>
         </div>
 
         <div>
-            <div style="color: var(--neon-pink); font-weight: bold; margin-bottom: 5px; font-size: 0.9rem;">CAPCUT PRO 🎬 (Edit Video Pro)</div>
-            <div class="price-row"><span>1 THÁNG / 1 NĂM</span><span class="price-val">80k / 410k</span></div>
+            <div style="color: var(--neon-pink); font-weight: bold; margin-bottom: 5px; font-size: 0.85rem;">CAPCUT PRO 🎬</div>
+            <div class="price-row"><span>1 THÁNG</span><span class="price-val">80.000đ</span></div>
+            <div class="price-row"><span>6 THÁNG</span><span class="price-val">300.000đ</span></div>
+            <div class="price-row"><span>12 THÁNG</span><span class="price-val">400.000đ</span></div>
         </div>
     </div>
 
     <div class="footer">
-        <div style="display:flex; justify-content:space-between"><span>ZALO/MB BANK:</span> <b>0349045703</b></div>
-        <div style="color:var(--gold); margin-top:10px; font-weight:bold; font-size: 1.1rem;">CHỦ TK: NGUYEN MINH</div>
+        <div>ZALO/MB BANK: <b>0349045703</b></div>
+        <div style="color:var(--gold); margin-top:10px; font-weight:bold;">CHỦ TK: NGUYEN MINH</div>
     </div>
 </div>
 
