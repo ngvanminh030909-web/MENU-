@@ -11,8 +11,11 @@
             --accent-blue: #00d2ff;
             --accent-purple: #9d50bb;
             --gold: #ffda44;
+            --neon-green: #39ff14;
+            --neon-pink: #ff00de;
             --glass: rgba(255, 255, 255, 0.05);
             --glass-border: rgba(255, 255, 255, 0.1);
+            --item-card-bg: rgba(20, 20, 35, 0.6);
         }
 
         body {
@@ -25,9 +28,10 @@
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* ----- HIỆU ỨNG CÁC VÌ SAO CHUYỂN ĐỘNG ----- */
+        /* ----- HIỆU ỨNG VŨ TRỤ STARFIELD CHUYỂN ĐỘNG ----- */
         .stars-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -50,7 +54,7 @@
             to { transform: translateZ(1000px) scale(1.5); opacity: 0; top: 100%; left: 100%; }
         }
 
-        /* ----- NỘI DUNG CHÍNH ----- */
+        /* ----- NỘI DUNG CHÍNH (GIAO DIỆN MỚI) ----- */
         .content-wrapper {
             width: 100%;
             max-width: 450px;
@@ -78,53 +82,106 @@
             letter-spacing: 3px;
             color: var(--accent-blue);
             opacity: 0.8;
+            margin-top: 5px;
         }
 
+        /* ----- TIÊU ĐỀ MỤC NEON ----- */
+        h2 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-blue);
+            text-shadow: 0 0 10px var(--accent-blue), 0 0 20px var(--accent-blue);
+            margin: 20px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-left: 10px;
+        }
+
+        /* ----- THẺ CARD CHO TỪNG DỊCH VỤ ----- */
         .card {
-            background: var(--glass);
+            background: var(--item-card-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 20px;
-            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
+            backdrop-filter: blur(5px);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
             transition: 0.3s;
         }
 
         .card:hover {
-            border-color: var(--accent-blue);
-            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(0, 210, 255, 0.4);
+            background: rgba(25, 25, 45, 0.7);
         }
 
-        h2 {
-            font-size: 1rem;
-            margin: 0 0 15px 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--accent-blue);
-        }
-
-        .item-row {
+        /* ----- DÒNG GIÁ CHÍNH ----- */
+        .item-price-row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            align-items: flex-start;
         }
 
-        .item-name { font-size: 0.9rem; font-weight: 300; }
-        .item-price { font-size: 0.9rem; font-weight: 700; color: var(--gold); }
+        .item-price-block {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
 
-        .sub-text {
+        .item-name {
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+        }
+
+        .item-price {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: 0 0 8px rgba(255, 218, 68, 0.5);
+        }
+
+        .item-period {
             font-size: 0.75rem;
             color: #aaa;
-            margin-top: 5px;
-            display: block;
+            margin-right: 5px;
         }
 
+        /* ----- DÒNG GIÁ PHỤ CHO LOCKET, CANVA, CAPCUT ----- */
+        .multi-price-block {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 10px;
+            margin-top: 5px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 15px;
+        }
+
+        .sub-price-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sub-period {
+            font-size: 0.75rem;
+            color: #ccc;
+            opacity: 0.9;
+        }
+
+        .sub-price {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gold);
+        }
+
+        /* ----- CHÂN TRANG ----- */
         .footer {
-            margin-top: 20px;
+            margin-top: 25px;
             text-align: center;
             padding: 20px;
             border-top: 1px solid var(--glass-border);
@@ -134,12 +191,14 @@
             font-size: 1.1rem;
             color: #fff;
             letter-spacing: 1px;
+            font-weight: 300;
         }
 
         .owner {
             color: var(--gold);
             font-weight: 700;
-            margin-top: 5px;
+            margin-top: 8px;
+            font-size: 1rem;
         }
     </style>
 </head>
@@ -150,50 +209,92 @@
 <div class="content-wrapper">
     <header>
         <h1 class="brand">NGUYEN MINH</h1>
-        <div class="subtitle">Premium Digital Assets</div>
+        <div class="subtitle">PREMIUM DIGITAL ASSETS</div>
     </header>
 
+    <h2>🎯 CHỨNG CHỈ & HỖ TRỢ</h2>
+    
     <div class="card">
-        <h2>🎯 FILE HỖ TRỢ KÉO TÂM</h2>
-        <div class="item-row"><span>iOS (Cấu Hình)</span><span class="item-price">50k - 1.000k</span></div>
-        <div class="item-row"><span>Data Android</span><span class="item-price">200k / Chức năng</span></div>
-    </div>
-
-    <div class="card">
-        <h2>⚙️ MENU FLUORITE</h2>
-        <div class="item-row"><span>1 NGÀY</span><span class="item-price">140.000đ</span></div>
-        <div class="item-row"><span>1 TUẦN</span><span class="item-price">350.000đ</span></div>
-        <div class="item-row"><span>1 THÁNG</span><span class="item-price">550.000đ</span></div>
-    </div>
-
-    <div class="card">
-        <h2>🛠️ CHỨNG CHỈ ESIGN</h2>
-        <div class="item-row"><span>GÓI 150K</span><span class="item-price">Bảo hành [10-26+]</span></div>
-        <div class="item-row"><span>GÓI 200K</span><span class="item-price">VIP KHÔNG THU HỒI</span></div>
-    </div>
-
-    <div class="card">
-        <h2>🚀 PROXY VIP (ANTENNA + DRAG)</h2>
-        <div class="item-row"><span>GÓI TUẦN</span><span class="item-price">150.000đ</span></div>
-        <div class="item-row"><span>GÓI THÁNG</span><span class="item-price">300.000đ</span></div>
-    </div>
-
-    <div class="card">
-        <h2>📱 TÀI KHOẢN APP PRO</h2>
-        
-        <div style="margin-bottom: 20px;">
-            <b style="color: #39ff14; font-size: 0.8rem;">LOCKET GOLD 💛</b>
-            <div class="item-row"><span>1T / 6T / 1N</span><span class="item-price">40k / 120k / 240k</span></div>
+        <div class="item-price-row">
+            <span class="item-name">CHỨNG CHỈ ESIGN (Gói Thường)</span>
+            <span class="item-price">150.000đ</span>
         </div>
+        <p style="font-size: 0.75rem; color: #ccc; margin: 0;">Bảo hành 1 tháng, thời hạn 1 năm. (Vui lòng liên hệ để kiểm tra hỗ trợ thiết bị)</p>
+    </div>
 
-        <div style="margin-bottom: 20px;">
-            <b style="color: #00d2ff; font-size: 0.8rem;">CANVA PRO 🎨</b>
-            <div class="item-row"><span>1T / 1N / VĨNH VIỄN</span><span class="item-price">40k / 200k / 600k</span></div>
+    <div class="card">
+        <div class="item-price-row">
+            <span class="item-name">CHỨNG CHỈ ESIGN (Gói VIP)</span>
+            <span class="item-price">200.000đ</span>
         </div>
+        <p style="font-size: 0.75rem; color: #ccc; margin: 0;">VIP KHÔNG THU HỒI. Bảo hành trọn đời chứng chỉ. (Vui lòng liên hệ để kiểm tra hỗ trợ thiết bị)</p>
+    </div>
 
-        <div>
-            <b style="color: #ff00de; font-size: 0.8rem;">CAPCUT PRO 🎬</b>
-            <div class="item-row"><span>1T / 6T / 12T</span><span class="item-price">80k / 300k / 400k</span></div>
+    <div class="card">
+        <div class="item-price-row">
+            <span class="item-name">FILE HỖ TRỢ KÉO TÂM</span>
+            <div class="item-price-block">
+                <span class="item-price">50k - 1.000k</span>
+                <span class="sub-text">(Data: Android/iOS)</span>
+            </div>
+        </div>
+    </div>
+
+    <h2>⚙️ CẤU HÌNH & PROXY</h2>
+
+    <div class="card">
+        <div class="item-price-row">
+            <span class="item-name">MENU FLUORITE</span>
+            <div class="item-price-block">
+                <span class="item-price">140k<span class="item-period">/ Ngày</span></span>
+                <span class="item-price">350k<span class="item-period">/ Tuần</span></span>
+                <span class="item-price">550k<span class="item-period">/ Tháng</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="item-price-row">
+            <span class="item-name">PROXY VIP (ANTENNA + DRAG)</span>
+            <div class="item-price-block">
+                <span class="item-price">150k<span class="item-period">/ Tuần</span></span>
+                <span class="item-price">300k<span class="item-period">/ Tháng</span></span>
+            </div>
+        </div>
+    </div>
+
+    <h2>📱 TÀI KHOẢN APP PRO</h2>
+    
+    <div class="card">
+        <div class="item-price-row">
+            <span class="item-name" style="color: #39ff14;">LOCKET GOLD 💛</span>
+        </div>
+        <div class="multi-price-block">
+            <div class="sub-price-item"><span class="sub-period">1T:</span><span class="sub-price">40k</span></div>
+            <div class="sub-price-item"><span class="sub-period">6T:</span><span class="sub-price">120k</span></div>
+            <div class="sub-price-item"><span class="sub-period">1N:</span><span class="sub-price">240k</span></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="item-price-row">
+            <span class="item-name" style="color: #00d2ff;">CANVA PRO 🎨</span>
+        </div>
+        <div class="multi-price-block">
+            <div class="sub-price-item"><span class="sub-period">1T:</span><span class="sub-price">40k</span></div>
+            <div class="sub-price-item"><span class="sub-period">1N:</span><span class="sub-price">200k</span></div>
+            <div class="sub-price-item"><span class="sub-period">VĨNH VIỄN:</span><span class="sub-price">600k</span></div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="item-price-row">
+            <span class="item-name" style="color: #ff00de;">CAPCUT PRO 🎬</span>
+        </div>
+        <div class="multi-price-block">
+            <div class="sub-price-item"><span class="sub-period">1T:</span><span class="sub-price">80k</span></div>
+            <div class="sub-price-item"><span class="sub-period">6T:</span><span class="sub-price">300k</span></div>
+            <div class="sub-price-item"><span class="sub-period">12T:</span><span class="sub-price">400k</span></div>
         </div>
     </div>
 
@@ -204,7 +305,7 @@
 </div>
 
 <script>
-    // Tạo vì sao ngẫu nhiên
+    // Hiệu ứng vì sao chuyển động từ code cũ
     const container = document.getElementById('starfield');
     const starCount = 150;
 
