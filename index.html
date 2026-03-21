@@ -3,231 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyen Minh - Galaxy Premium</title>
+    <title>Nguyen Minh - Starfield Edition</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&family=Oswald:wght@500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;500;700&display=swap');
 
         :root {
-            --neon-blue: #00d2ff;
-            --neon-green: #39ff14;
-            --neon-purple: #bc13fe;
-            --neon-pink: #ff00de;
+            --accent-blue: #00d2ff;
+            --accent-purple: #9d50bb;
             --gold: #ffda44;
-            --text-color: #fff;
-            --fire: #ff4500;
-            --snow: #e0f7fa;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
 
         body {
-            background: #020205;
-            color: var(--text-color);
+            background: #05050a;
+            color: #fff;
             font-family: 'Lexend', sans-serif;
             margin: 0;
-            padding: 10px;
+            padding: 20px 10px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: center;
             overflow-x: hidden;
-            position: relative;
-            min-height: 100vh;
         }
 
-        /* ----- HIỆU ỨNG NỀN GALAXY ----- */
-        .galaxy-bg {
+        /* ----- HIỆU ỨNG CÁC VÌ SAO CHUYỂN ĐỘNG ----- */
+        .stars-container {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -2;
-            background: radial-gradient(circle at 50% 50%, #1a1a3a 0%, #020205 100%);
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+            overflow: hidden;
         }
 
-        /* ----- HIỆU ỨNG RƠI DÀY ĐẶC (BĂNG & LỬA) ----- */
-        .falling-elements {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 9999; /* Đẩy lên trên cùng để rơi đè lên menu */
-            pointer-events: none; /* Không cản trở việc click vào nội dung */
-        }
-
-        /* Style chung cho các phần tử rơi */
-        .element-item {
+        .star {
             position: absolute;
-            opacity: 0;
-            animation: fallAnimation 5s linear infinite;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: moveStar linear infinite;
         }
 
-        /* Animation rơi */
-        @keyframes fallAnimation {
-            0% { top: -50px; opacity: 0; transform: translateX(0) scale(0.5); }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 110vh; opacity: 0; transform: translateX(20px) scale(1); }
+        @keyframes moveStar {
+            from { transform: translateZ(0) scale(0.5); opacity: 0; }
+            50% { opacity: 1; }
+            to { transform: translateZ(1000px) scale(1.5); opacity: 0; top: 100%; left: 100%; }
         }
 
-        /* Kiểu dáng cho lửa */
-        .fire-item { color: var(--fire); }
-
-        /* Kiểu dáng cho tuyết */
-        .snow-item { color: var(--snow); text-shadow: 0 0 5px var(--neon-blue); }
-
-        /* Tạo ngẫu nhiên vị trí, độ mờ, kích thước và tốc độ (Nhiều hơn!) */
-        /* --- LỬA --- */
-        .element-item:nth-child(1)  { left: 5%;  animation-delay: 0s;   font-size: 1.0rem; }
-        .element-item:nth-child(2)  { left: 15%; animation-delay: 2.1s; font-size: 1.4rem; animation-duration: 6s; opacity: 0.8; }
-        .element-item:nth-child(3)  { left: 25%; animation-delay: 0.5s; font-size: 1.2rem; }
-        .element-item:nth-child(4)  { left: 35%; animation-delay: 3.3s; font-size: 1.6rem; animation-duration: 4.5s; opacity: 0.9; }
-        .element-item:nth-child(5)  { left: 45%; animation-delay: 1.0s; font-size: 1.1rem; }
-        .element-item:nth-child(6)  { left: 55%; animation-delay: 4.5s; font-size: 1.5rem; animation-duration: 5.5s; }
-        .element-item:nth-child(7)  { left: 65%; animation-delay: 0.8s; font-size: 1.3rem; opacity: 0.7; }
-        .element-item:nth-child(8)  { left: 75%; animation-delay: 2.7s; font-size: 1.7rem; animation-duration: 5s; }
-        .element-item:nth-child(9)  { left: 85%; animation-delay: 1.5s; font-size: 1.2rem; }
-        .element-item:nth-child(10) { left: 95%; animation-delay: 3.9s; font-size: 1.4rem; animation-duration: 6.2s; opacity: 0.8; }
-        .element-item:nth-child(11) { left: 10%; animation-delay: 5.2s; font-size: 1.3rem; animation-duration: 4.8s; }
-        .element-item:nth-child(12) { left: 30%; animation-delay: 6.0s; font-size: 1.5rem; animation-duration: 5.8s; }
-        .element-item:nth-child(13) { left: 50%; animation-delay: 7.1s; font-size: 1.2rem; animation-duration: 4.2s; opacity: 0.9; }
-        .element-item:nth-child(14) { left: 70%; animation-delay: 8.3s; font-size: 1.6rem; animation-duration: 4.7s; }
-        .element-item:nth-child(15) { left: 90%; animation-delay: 9.0s; font-size: 1.4rem; animation-duration: 5.1s; }
-
-        /* --- TUYẾT (Đan xen) --- */
-        .element-item:nth-child(16) { left: 8%;  animation-delay: 1.2s; font-size: 1.1rem; }
-        .element-item:nth-child(17) { left: 18%; animation-delay: 3.5s; font-size: 1.5rem; animation-duration: 6.3s; }
-        .element-item:nth-child(18) { left: 28%; animation-delay: 0.2s; font-size: 1.3rem; }
-        .element-item:nth-child(19) { left: 38%; animation-delay: 4.0s; font-size: 1.7rem; animation-duration: 4.9s; opacity: 0.8; }
-        .element-item:nth-child(20) { left: 48%; animation-delay: 2.2s; font-size: 1.2rem; }
-        .element-item:nth-child(21) { left: 58%; animation-delay: 5.8s; font-size: 1.6rem; animation-duration: 5.2s; }
-        .element-item:nth-child(22) { left: 68%; animation-delay: 1.8s; font-size: 1.4rem; opacity: 0.9; }
-        .element-item:nth-child(23) { left: 78%; animation-delay: 3.1s; font-size: 1.8rem; animation-duration: 5.7s; }
-        .element-item:nth-child(24) { left: 88%; animation-delay: 0.9s; font-size: 1.3rem; }
-        .element-item:nth-child(25) { left: 98%; animation-delay: 4.9s; font-size: 1.5rem; animation-duration: 6.1s; opacity: 0.8; }
-        .element-item:nth-child(26) { left: 12%; animation-delay: 6.5s; font-size: 1.2rem; animation-duration: 5s; }
-        .element-item:nth-child(27) { left: 32%; animation-delay: 7.8s; font-size: 1.6rem; animation-duration: 4.3s; opacity: 0.7; }
-        .element-item:nth-child(28) { left: 52%; animation-delay: 8.9s; font-size: 1.4rem; animation-duration: 5.9s; }
-        .element-item:nth-child(29) { left: 72%; animation-delay: 9.5s; font-size: 1.7rem; animation-duration: 5.3s; }
-        .element-item:nth-child(30) { left: 92%; animation-delay: 10s;  font-size: 1.3rem; animation-duration: 6.5s; }
-
-        /* ----- CONTAINER CHÍNH ----- */
-        .container {
+        /* ----- NỘI DUNG CHÍNH ----- */
+        .content-wrapper {
             width: 100%;
-            max-width: 480px;
-            background: rgba(10, 10, 25, 0.9);
-            border: 2px solid rgba(0, 210, 255, 0.4);
-            border-radius: 25px;
-            padding: 20px;
-            box-shadow: 0 0 30px rgba(188, 19, 254, 0.3);
-            backdrop-filter: blur(10px);
-            position: relative;
-            z-index: 10; /* Đảm bảo nội dung có thể click được dưới lớp falling-elements */
-            margin: 20px 0;
+            max-width: 450px;
+            z-index: 1;
         }
 
-        header { text-align: center; margin-bottom: 25px; border-bottom: 2px solid var(--neon-purple); padding-bottom: 10px; }
-        .brand { font-family: 'Oswald', sans-serif; font-size: 2.5rem; text-transform: uppercase; background: linear-gradient(to right, #fff, var(--neon-blue), var(--neon-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
 
-        .section { margin-bottom: 20px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 15px; border: 1px solid rgba(255, 255, 255, 0.1); }
-        h2 { font-size: 1.1rem; color: var(--neon-blue); text-transform: uppercase; margin-top: 0; border-left: 4px solid var(--neon-blue); padding-left: 10px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .brand {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 5px;
+            background: linear-gradient(to right, #fff, var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
 
-        .price-row { display: flex; justify-content: space-between; background: rgba(255, 255, 255, 0.08); padding: 10px 15px; border-radius: 10px; margin-bottom: 8px; font-weight: bold; font-size: 0.9rem; }
-        .price-val { color: var(--gold); }
+        .subtitle {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent-blue);
+            opacity: 0.8;
+        }
 
-        .details { list-style: none; padding: 0; margin: 10px 0; font-size: 0.85rem; color: #eee; }
-        .details li { margin-bottom: 5px; display: flex; align-items: flex-start; gap: 8px; }
-        .details li::before { content: "⚡"; color: var(--neon-green); }
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(15px);
+            transition: 0.3s;
+        }
 
-        .footer { background: rgba(20, 20, 45, 0.9); padding: 15px; border-radius: 15px; border: 1px solid var(--neon-purple); margin-top: 20px; font-size: 0.9rem; text-align: center; }
+        .card:hover {
+            border-color: var(--accent-blue);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        h2 {
+            font-size: 1rem;
+            margin: 0 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-blue);
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .item-name { font-size: 0.9rem; font-weight: 300; }
+        .item-price { font-size: 0.9rem; font-weight: 700; color: var(--gold); }
+
+        .sub-text {
+            font-size: 0.75rem;
+            color: #aaa;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .bank-info {
+            font-size: 1.1rem;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .owner {
+            color: var(--gold);
+            font-weight: 700;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
 
-<div class="galaxy-bg"></div>
+<div class="stars-container" id="starfield"></div>
 
-<div class="falling-elements">
-    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
-    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
-    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
-    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
-    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
-    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
-    <span class="element-item fire-item">🔥</span><span class="element-item fire-item">🔥</span>
-    <span class="element-item fire-item">🔥</span>
-
-    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
-    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
-    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
-    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
-    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
-    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
-    <span class="element-item snow-item">❄️</span><span class="element-item snow-item">❄️</span>
-    <span class="element-item snow-item">❄️</span>
-</div>
-
-<div class="container">
+<div class="content-wrapper">
     <header>
         <h1 class="brand">NGUYEN MINH</h1>
-        <div style="font-size: 0.7rem; color: #aaa; letter-spacing: 2px;">DỊCH VỤ PREMIUM • UY TÍN • CHẤT LƯỢNG</div>
+        <div class="subtitle">Premium Digital Assets</div>
     </header>
 
-    <div class="section" style="border: 2px solid var(--neon-green);">
-        <h2 style="color: var(--neon-green); border-color: var(--neon-green);">🎯 FILE HỖ TRỢ KÉO TÂM</h2>
-        <div class="price-row"><span>iOS (Cấu Hình)</span><span class="price-val">50.000đ - 1.000.000đ</span></div>
-        <div class="price-row"><span>Data Android</span><span class="price-val">200.000đ / Chức năng</span></div>
-        <ul class="details">
-            <li>An toàn 100% - Dùng vĩnh viễn</li>
-        </ul>
+    <div class="card">
+        <h2>🎯 FILE HỖ TRỢ KÉO TÂM</h2>
+        <div class="item-row"><span>iOS (Cấu Hình)</span><span class="item-price">50k - 1.000k</span></div>
+        <div class="item-row"><span>Data Android</span><span class="item-price">200k / Chức năng</span></div>
     </div>
 
-    <div class="section" style="border: 1px solid var(--neon-blue);">
-        <h2 style="color: var(--neon-blue); border-color: var(--neon-blue);">⚙️ MENU FLUORITE (SAFE 99%)</h2>
-        <div class="price-row"><span>1 NGÀY</span><span class="price-val">140.000đ</span></div>
-        <div class="price-row"><span>1 TUẦN</span><span class="price-val">350.000đ</span></div>
-        <div class="price-row"><span>1 THÁNG</span><span class="price-val">550.000đ</span></div>
+    <div class="card">
+        <h2>⚙️ MENU FLUORITE</h2>
+        <div class="item-row"><span>1 NGÀY</span><span class="item-price">140.000đ</span></div>
+        <div class="item-row"><span>1 TUẦN</span><span class="item-price">350.000đ</span></div>
+        <div class="item-row"><span>1 THÁNG</span><span class="item-price">550.000đ</span></div>
     </div>
 
-    <div class="section" style="border: 1px solid var(--neon-pink);">
-        <h2 style="color: var(--neon-pink); border-color: var(--neon-pink);">🛠️ CHỨNG CHỈ ESIGN</h2>
-        <div class="price-row"><span>GÓI 150K</span><span class="price-val">Bảo hành [10-26+]</span></div>
-        <div class="price-row" style="border: 1px solid var(--neon-green);"><span>GÓI 200K</span><span class="price-val">VIP - Không thu hồi</span></div>
-        <ul class="details">
-            <li>Tỉ lệ tránh thu hồi 99% - Hỗ trợ Bypass</li>
-        </ul>
+    <div class="card">
+        <h2>🛠️ CHỨNG CHỈ ESIGN</h2>
+        <div class="item-row"><span>GÓI 150K</span><span class="item-price">Bảo hành [10-26+]</span></div>
+        <div class="item-row"><span>GÓI 200K</span><span class="item-price">VIP KHÔNG THU HỒI</span></div>
     </div>
 
-    <div class="section" style="border: 1px solid var(--neon-blue);">
-        <h2 style="color: var(--neon-blue);">🚀 PROXY VIP (ANTENNA + DRAG)</h2>
-        <div class="price-row"><span>GÓI TUẦN</span><span class="price-val">150.000đ</span></div>
-        <div class="price-row"><span>GÓI THÁNG</span><span class="price-val">300.000đ</span></div>
-        <ul class="details">
-            <li>Kháng Band 100% - Cày Rank thả ga</li>
-        </ul>
+    <div class="card">
+        <h2>🚀 PROXY VIP (ANTENNA + DRAG)</h2>
+        <div class="item-row"><span>GÓI TUẦN</span><span class="item-price">150.000đ</span></div>
+        <div class="item-row"><span>GÓI THÁNG</span><span class="item-price">300.000đ</span></div>
     </div>
 
-    <div class="section" style="border: 1px solid var(--gold);">
-        <h2 style="color: var(--gold); border-color: var(--gold);">📱 TÀI KHOẢN APP PRO</h2>
+    <div class="card">
+        <h2>📱 TÀI KHOẢN APP PRO</h2>
         
-        <div style="margin-bottom: 15px;">
-            <div style="color: var(--neon-green); font-weight: bold; margin-bottom: 5px; font-size: 0.85rem;">LOCKET GOLD 💛</div>
-            <div class="price-row"><span>1 THÁNG</span><span class="price-val">40.000đ</span></div>
-            <div class="price-row"><span>6 THÁNG</span><span class="price-val">120.000đ</span></div>
-            <div class="price-row"><span>1 NĂM</span><span class="price-val">240.000đ</span></div>
+        <div style="margin-bottom: 20px;">
+            <b style="color: #39ff14; font-size: 0.8rem;">LOCKET GOLD 💛</b>
+            <div class="item-row"><span>1T / 6T / 1N</span><span class="item-price">40k / 120k / 240k</span></div>
         </div>
 
-        <div style="margin-bottom: 15px;">
-            <div style="color: var(--neon-blue); font-weight: bold; margin-bottom: 5px; font-size: 0.85rem;">CANVA PRO 🎨</div>
-            <div class="price-row"><span>1 THÁNG</span><span class="price-val">40.000đ</span></div>
-            <div class="price-row"><span>1 NĂM</span><span class="price-val">200.000đ</span></div>
-            <div class="price-row"><span>VĨNH VIỄN</span><span class="price-val">600.000đ</span></div>
+        <div style="margin-bottom: 20px;">
+            <b style="color: #00d2ff; font-size: 0.8rem;">CANVA PRO 🎨</b>
+            <div class="item-row"><span>1T / 1N / VĨNH VIỄN</span><span class="item-price">40k / 200k / 600k</span></div>
         </div>
 
         <div>
-            <div style="color: var(--neon-pink); font-weight: bold; margin-bottom: 5px; font-size: 0.85rem;">CAPCUT PRO 🎬</div>
-            <div class="price-row"><span>1 THÁNG</span><span class="price-val">80.000đ</span></div>
-            <div class="price-row"><span>6 THÁNG</span><span class="price-val">300.000đ</span></div>
-            <div class="price-row"><span>12 THÁNG</span><span class="price-val">400.000đ</span></div>
+            <b style="color: #ff00de; font-size: 0.8rem;">CAPCUT PRO 🎬</b>
+            <div class="item-row"><span>1T / 6T / 12T</span><span class="item-price">80k / 300k / 400k</span></div>
         </div>
     </div>
 
     <div class="footer">
-        <div>ZALO/MB BANK: <b>0349045703</b></div>
-        <div style="color:var(--gold); margin-top:10px; font-weight:bold;">CHỦ TK: NGUYEN MINH</div>
+        <div class="bank-info">ZALO/MB: <b>0349045703</b></div>
+        <div class="owner">CHỦ TK: NGUYEN MINH</div>
     </div>
 </div>
+
+<script>
+    // Tạo vì sao ngẫu nhiên
+    const container = document.getElementById('starfield');
+    const starCount = 150;
+
+    for (let i = 0; i < starCount; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        const size = Math.random() * 3 + 'px';
+        star.style.width = size;
+        star.style.height = size;
+        
+        star.style.top = Math.random() * 100 + '%';
+        star.style.left = Math.random() * 100 + '%';
+        
+        const duration = Math.random() * 3 + 2 + 's';
+        star.style.animationDuration = duration;
+        star.style.animationDelay = Math.random() * 5 + 's';
+        
+        container.appendChild(star);
+    }
+</script>
 
 </body>
 </html>
