@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nguyen Minh - Starfield Edition</title>
+    <title>nqminhiOs - Starfield Edition</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;500;700&display=swap');
 
@@ -11,7 +11,7 @@
             --accent-blue: #00d2ff;
             --accent-purple: #9d50bb;
             --gold: #ffda44;
-            --glass: rgba(255, 255, 255, 0.05);
+            --glass: rgba(10, 10, 25, 0.7); /* Làm mờ bảng giá */
             --glass-border: rgba(255, 255, 255, 0.1);
         }
 
@@ -25,6 +25,7 @@
             flex-direction: column;
             align-items: center;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         /* ----- HIỆU ỨNG CÁC VÌ SAO CHUYỂN ĐỘNG ----- */
@@ -86,7 +87,8 @@
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 20px;
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px); /* Chức năng làm mờ */
+            -webkit-backdrop-filter: blur(15px);
             transition: 0.3s;
         }
 
@@ -102,6 +104,7 @@
             align-items: center;
             gap: 10px;
             color: var(--accent-blue);
+            text-transform: uppercase;
         }
 
         .item-row {
@@ -115,13 +118,6 @@
 
         .item-name { font-size: 0.9rem; font-weight: 300; }
         .item-price { font-size: 0.9rem; font-weight: 700; color: var(--gold); }
-
-        .sub-text {
-            font-size: 0.75rem;
-            color: #aaa;
-            margin-top: 5px;
-            display: block;
-        }
 
         .footer {
             margin-top: 20px;
@@ -149,7 +145,7 @@
 
 <div class="content-wrapper">
     <header>
-        <h1 class="brand">NGUYEN MINH</h1>
+        <h1 class="brand">nqminhiOs</h1>
         <div class="subtitle">Premium Digital Assets</div>
     </header>
 
@@ -204,25 +200,20 @@
 </div>
 
 <script>
-    // Tạo vì sao ngẫu nhiên
     const container = document.getElementById('starfield');
     const starCount = 150;
 
     for (let i = 0; i < starCount; i++) {
         const star = document.createElement('div');
         star.className = 'star';
-        
         const size = Math.random() * 3 + 'px';
         star.style.width = size;
         star.style.height = size;
-        
         star.style.top = Math.random() * 100 + '%';
         star.style.left = Math.random() * 100 + '%';
-        
         const duration = Math.random() * 3 + 2 + 's';
         star.style.animationDuration = duration;
         star.style.animationDelay = Math.random() * 5 + 's';
-        
         container.appendChild(star);
     }
 </script>
